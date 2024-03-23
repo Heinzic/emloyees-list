@@ -1,10 +1,13 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Header from "../base/Header";
 
 function EmployeesList() {
     
     const jobOptions = [
-        {label: 'Backend-разработчик', value: 'backend'},
+        {
+            label: 'Backend-разработчик', 
+            value: 'backend'
+        },
         {label: 'Frontend-разработчик', value: 'frontend'},
         {label: 'Аналитик', value: 'analytics'},
         {label: 'Менеджер', value: 'managment'},
@@ -14,10 +17,16 @@ function EmployeesList() {
 
     const [isOpen, setIsOpen] = useState(false)
 
+
+    function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+        e.preventDefault()
+        setIsOpen(!isOpen)
+    }
+
     return(
         <>
             <Header/>
-            <div className="max-w-[1560px] w-[1560px] mx-auto">
+            <div className="max-w-[1560px] mx-auto">
                  <div className="flex text-[18px] h-[77px] items-center gap-[16px]">
                     <a>Главная</a>
                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,22 +34,22 @@ function EmployeesList() {
                     </svg>
                     <a>Список сотрудников</a>
                  </div>
-                <div className="flex flex-row items-center">
-                    <div className="grow">
+                <div className="flex flex-row items-center justify-between">
+                    <div className="shrink">
                         <h1 className="text-[40px] font-bold">Список сотрудников</h1>
                     </div>
                     <div className="">
                         <button className="flex items-center text-[20px] gap-[8px] justify-end ml-auto"
-                        onClick={() => setIsOpen(!isOpen)}
+                        onClick={handleClick}
                         >
-                            <div className="hover:text-[#155DA4]">Должность</div>
+                            <div className={isOpen? 'text-[#155DA4]' : ''}>Должность</div>
                             
                             <svg width="20" height="9" viewBox="0 0 20 9" fill="none" xmlns="http://www.w3.org/2000/svg" 
-                                className="enabled:rotate-180">
+                                className={isOpen? 'transform transition-all rotate-180' : 'transform transition-all rotate-0'}>
                                 <path d="M1.67149 0.951206L8.52773 7.47121C9.33744 8.24121 10.6624 8.24121 11.4721 7.47121L18.3284 0.951206" stroke="#155DA4" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
-                        {isOpen && <ul className="z-10 absolute right- min-w-[267px] mt-[8px] mx-auto">
+                        {isOpen && <ul className="z-10 absolute min-w-[267px] mt-[8px] mx-auto">
                             <div className="relative right-[50%] shadow-[0_4px_4px_0px_#3971A440] p-[20px]">
                                 {jobOptions.map(e => (
                                 <li className="flex text-[16px]">
@@ -52,7 +61,7 @@ function EmployeesList() {
                         </ul>}
                     </div>
                     
-                </div>
+                </div>                
             </div>
         </>
     )
