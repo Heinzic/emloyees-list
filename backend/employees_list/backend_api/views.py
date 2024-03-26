@@ -1,21 +1,27 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .models import YoutubeVideo
-from .serializer import YoutubeVideoSerializer
+from .models import Employee
+from .serializer import EmloyeeSerializer
 from rest_framework.response import Response
 # Create your views here.
 
-class YoutubeVideoView(APIView):
+class EmployeeView(APIView):
     def get(self, request):
         output = [
             {
-                "title": output.title,
-                "channel": output.channel
-            } for output in YoutubeVideo.objects.all()
+                'Name': output.name, 
+                'Email': output.email, 
+                'Birth date': output.birth_date, 
+                'Position': output.position,
+                'Gender': output.gender,
+                'Technology': output.technology,
+            } for output in Employee.objects.all()
         ]
+        
         return Response(output)
+    
     def post(self, req):
-        serializer = YoutubeVideoSerializer(data = req.data)
+        serializer = EmloyeeSerializer(data = req.data)
         if serializer.is_valid(raise_exception = True):
             serializer.save()
             return Response(serializer.data)
