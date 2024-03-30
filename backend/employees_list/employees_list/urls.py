@@ -28,16 +28,16 @@ api = 'api/'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(api + 'channel/', EmployeeView.as_view())
+    path(api, EmployeeView.as_view())
 ]
 
 urlpatterns += [
-    path(api, SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:
     path(
         api + 'swagger/',
         SpectacularSwaggerView.as_view(url_name='schema'),
-        name='swagger'
+        name='swagger-ui'
     ),
     path(
         api + 'redoc/',

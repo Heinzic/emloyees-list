@@ -37,11 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'backend_api',
     'rest_framework',
     'corsheaders',
     'drf_spectacular',
-    'backend_api',
-    'employees_list'
 ]
 
 MIDDLEWARE = [
@@ -63,8 +62,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Django5 Employees List Swagger API',
-    'DESCRIPTION': '',
+    'TITLE': 'Django5 Test Swagger API',
+    'DESCRIPTION': 'Django5 Test Swagger API description',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
@@ -72,7 +71,7 @@ SPECTACULAR_SETTINGS = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = 'employees_list.urls'
 
 TEMPLATES = [
     {
@@ -90,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'employees_list.wsgi.application'
 
 
 # Database

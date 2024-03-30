@@ -3,6 +3,12 @@ from django.db import models
 # Create your models here.
 class Employee(models.Model):
     
+    Frontend = 'FE'
+    Backend = 'BE'
+    Analyst = 'AN'
+    Manager = "MN"
+    Designer = 'DS'
+    
     POSITION = (
         (Frontend, 'Frontend-разработчик'),
         (Backend, 'Frontend-разработчик'),
@@ -11,10 +17,20 @@ class Employee(models.Model):
         (Designer, 'Frontend-разработчик'),
     )
     
+    Male = 'M'
+    Female = 'F'
+    
     GENDER = (
         (Male, 'Мужчина'),
         (Female, 'Женщина'),
     )
+    
+    CSharp = 'CS'
+    React = 'RT'
+    Java = 'JV'
+    PHP = 'PH'
+    Figma = 'FG'
+    Word = 'WD'
     
     TECHNOLOGY = (
         (CSharp, 'C#'),

@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 from .models import Employee
 from .serializer import EmloyeeSerializer
 from rest_framework.response import Response
 # Create your views here.
 
-class EmployeeView(APIView):
+class EmployeeView(GenericAPIView):
     def get(self, request):
         output = [
             {
@@ -25,3 +26,6 @@ class EmployeeView(APIView):
         if serializer.is_valid(raise_exception = True):
             serializer.save()
             return Response(serializer.data)
+        
+    def get_serializer_class(self):
+        return EmloyeeSerializer
