@@ -1,7 +1,13 @@
 from rest_framework import serializers
-from .models import YoutubeVideo
+from .models import Employee
 
-class YoutubeVideoSerializer(serializers.ModelSerializer):
+class EmloyeeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = YoutubeVideo
-        fields = ['title', 'channel']
+        model = Employee
+        fields = ['name', 
+                  'email', 
+                  'birth_date', 
+                  'position',
+                  'gender',
+                  'technology'
+                  ]
