@@ -28,7 +28,8 @@ api = 'api/'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(api, EmployeeView.as_view())
+    path('Employee/', include('backend_api.urls'))
+    # path('Employee', EmployeeView.as_view())
 ]
 
 urlpatterns += [
