@@ -26,6 +26,37 @@ class EmployeeGetAllView(GenericAPIView):
     def get_serializer_class(self):
         return EmloyeeSerializer
     
+class EmployeeGetView(GenericAPIView):
+    def get(self, request, id):
+        output = [
+            {
+                'id': output.id,
+                'Name': output.name, 
+                'Email': output.email, 
+                'Birth date': output.birth_date, 
+                'Position': output.position,
+                'Gender': output.gender,
+                'Technology': output.technology,
+            } for output in Employee.objects.filter(id = id)
+        ]
+        
+        return Response(output)
+        
+    def get_serializer_class(self):
+        return EmloyeeSerializer
+    
+class EmployeePatchView(GenericAPIView):
+    def patch(self, req, id):
+        employee = Employee.objects.filter(id = id).first()
+        serializer = EmloyeeSerializer(employee, data = req.data, partial = True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(status=400, data="wrong parameters")
+        
+    def get_serializer_class(self):
+        return EmloyeeSerializer
+
 class EmployeePostView(GenericAPIView):
     def post(self, req):
         serializer = EmloyeeSerializer(data = req.data)
@@ -35,7 +66,7 @@ class EmployeePostView(GenericAPIView):
         
     def get_serializer_class(self):
         return EmloyeeSerializer
-    
+
 class EmployeeDeleteView(GenericAPIView):
     model = Employee
     
