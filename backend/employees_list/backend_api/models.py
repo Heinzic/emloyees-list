@@ -12,10 +12,10 @@ class Employee(models.Model):
     
     POSITION = (
         (Frontend, 'Frontend-разработчик'),
-        (Backend, 'Frontend-разработчик'),
-        (Analyst, 'Frontend-разработчик'),
-        (Manager, 'Frontend-разработчик'),
-        (Designer, 'Frontend-разработчик'),
+        (Backend, 'Backend-разработчик'),
+        (Analyst, 'Аналитик'),
+        (Manager, 'Менеджер'),
+        (Designer, 'Дизайнер'),
     )
     
     Male = 'M'
