@@ -8,6 +8,7 @@ from rest_framework.response import Response
 # Create your views here.
 
 class EmployeeGetAllView(GenericAPIView):
+    http_method_names = ['get', 'post', 'head']
     def get(self, request):
         output = [
             {
@@ -22,6 +23,12 @@ class EmployeeGetAllView(GenericAPIView):
         ]
         
         return Response(output)
+    
+    def post(self, req):
+        serializer = EmloyeeSerializer(data = req.data)
+        if serializer.is_valid(raise_exception = True):
+            serializer.save()
+            return Response(serializer.data)
         
     def get_serializer_class(self):
         return EmloyeeSerializer
@@ -41,11 +48,7 @@ class EmployeeGetView(GenericAPIView):
         ]
         
         return Response(output)
-        
-    def get_serializer_class(self):
-        return EmloyeeSerializer
     
-class EmployeePatchView(GenericAPIView):
     def patch(self, req, id):
         employee = Employee.objects.filter(id = id).first()
         serializer = EmloyeeSerializer(employee, data = req.data, partial = True)
@@ -53,22 +56,6 @@ class EmployeePatchView(GenericAPIView):
             serializer.save()
             return Response(serializer.data)
         return Response(status=400, data="wrong parameters")
-        
-    def get_serializer_class(self):
-        return EmloyeeSerializer
-
-class EmployeePostView(GenericAPIView):
-    def post(self, req):
-        serializer = EmloyeeSerializer(data = req.data)
-        if serializer.is_valid(raise_exception = True):
-            serializer.save()
-            return Response(serializer.data)
-        
-    def get_serializer_class(self):
-        return EmloyeeSerializer
-
-class EmployeeDeleteView(GenericAPIView):
-    model = Employee
     
     def delete(self, req, id):
         Employee.objects.filter(id = id).delete()
@@ -76,3 +63,4 @@ class EmployeeDeleteView(GenericAPIView):
         
     def get_serializer_class(self):
         return EmloyeeSerializer
+    
