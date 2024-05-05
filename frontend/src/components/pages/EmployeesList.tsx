@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "../base/Header";
+import { userAPI } from "../../store/services/UserAPI";
 
 function EmployeesList() {
     
@@ -52,6 +53,8 @@ function EmployeesList() {
             )
         }
     }
+
+    const {data} = userAPI.useFetchAllUsersQuery()
 
     return(
         <>
