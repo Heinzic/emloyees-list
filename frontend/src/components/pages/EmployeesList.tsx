@@ -54,7 +54,11 @@ function EmployeesList() {
         }
     }
 
-    const {data} = userAPI.useFetchAllUsersQuery()
+    const [deleteUser, {}] = userAPI.useDeleteEmployeeMutation()
+
+    const handleCreate = () => {
+        deleteUser('3b9718e2-6f79-4b1c-8399-506d867d8df0')
+    }
 
     return(
         <>
@@ -154,7 +158,7 @@ function EmployeesList() {
                         </ul>
                     </div>
                     <div className="">
-                        <button className="text-white bg-[#155DA4] px-[48px] py-[12px] rounded-lg">Найти</button>
+                        <button className="text-white bg-[#155DA4] px-[48px] py-[12px] rounded-lg" onClick={handleCreate}>Найти</button>
                     </div>
                 </div>
             </div>

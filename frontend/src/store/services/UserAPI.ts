@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IUser } from "../models/IUser";
+import { IEmployee, IFetchedEmployee } from "../models/IUser";
 
 
 export const userAPI = createApi({
@@ -8,11 +8,36 @@ export const userAPI = createApi({
         baseUrl: '/api',
     }),
     endpoints: (build) => ({
-        fetchAllUsers: build.query<IUser[], void>({
+        fetchAllEmployees: build.query<IFetchedEmployee[], void>({
             query: () => ({
                 url: '/Employee',
-                headers: []
             })
-        })
+        }),
+        fetchEmployee: build.query<IFetchedEmployee, string>({
+            query: (id) => ({
+                url: `/Employee/${id}`
+            })
+        }),
+        createEmployee: build.mutation<IFetchedEmployee, IEmployee>({
+            query: (employee) => ({
+                url: '/Employee/',
+                method: 'POST',
+                body: employee
+            })
+        }),
+        changeEmployee: build.mutation<IFetchedEmployee, {employee: IEmployee, id: string}>({
+            query: ({employee, id}) => ({
+                url: `/Employee/${id}`,
+                method: 'PATCH',
+                body: employee
+            })
+        }),
+        deleteEmployee: build.mutation<IEmployee, string>({
+            query: (id) => ({
+                url: `/Employee/${id}`,
+                method: 'DELETE',
+                body: id
+            })
+        }),
     })
 })
