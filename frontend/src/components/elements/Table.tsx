@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom"
-import { useFetchAllEmployeesQuery} from "../../store/services/UserAPI"
+import { useFetchAllEmployeesQuery} from "../../store/services/EmployeeAPI"
 import { IFetchedEmployee } from "../../store/models/IUser"
 
 function Table() {
@@ -30,7 +30,7 @@ function Table() {
                             <td>{employee.email}</td>
                             <td>{employee.birth_date}</td>                        
                     </tr>
-                ))}
+                ))} 
             </table>
         </>
     ) 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../base/Header";
-import { useFetchAllEmployeesQuery, userAPI } from "../../store/services/UserAPI";
+import { useFetchAllEmployeesQuery, EmployeeAPI } from "../../store/services/EmployeeAPI";
 import Table from "../elements/Table";
 import { IFetchedEmployee } from "../../store/models/IUser";
 import { NavLink } from "react-router-dom";
@@ -55,10 +55,7 @@ function EmployeesList() {
                 filter.filter((e) => e !== id)
             )
         }
-    }
-
-    const {data} = useFetchAllEmployeesQuery()
-    
+    }    
 
     return(
         <>
@@ -69,11 +66,11 @@ function EmployeesList() {
                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.6259 2.45964C5.01643 2.06912 5.64959 2.06912 6.04011 2.45964L11.3734 7.79297C11.764 8.1835 11.764 8.81666 11.3734 9.20719L6.04011 14.5405C5.64959 14.931 5.01643 14.931 4.6259 14.5405C4.23538 14.15 4.23538 13.5168 4.6259 13.1263L9.25213 8.50008L4.6259 3.87385C4.23538 3.48333 4.23538 2.85017 4.6259 2.45964Z" fill="#B0B0B0"/>
                     </svg>
-                    <a>Список сотрудников</a>
+                    <a className="text-[#155DA4]">Список сотрудников</a>
                  </div>
                 <div className="flex flex-row items-center justify-between">
                     <div className="shrink">
-                        <h1 className="text-[40px] font-bold">Список сотрудников</h1>
+                        <h1 className="text-[40px] font-bold ">Список сотрудников</h1>
                     </div>
                     <div className="flex flex-row gap-[60px]">
                         <div className="">

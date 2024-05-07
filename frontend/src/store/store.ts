@@ -1,16 +1,16 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { userAPI } from "./services/UserAPI";
+import { EmployeeAPI } from "./services/EmployeeAPI";
 
 
 const rootReducer = combineReducers({
-    [userAPI.reducerPath]: userAPI.reducer
+    [EmployeeAPI.reducerPath]: EmployeeAPI.reducer
 })
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) => 
-            getDefaultMiddleware().concat(userAPI.middleware)
+            getDefaultMiddleware().concat(EmployeeAPI.middleware)
     })
 }
 

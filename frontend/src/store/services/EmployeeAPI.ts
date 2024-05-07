@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IEmployee, IFetchedEmployee } from "../models/IUser";
 
 
-export const userAPI = createApi({
+export const EmployeeAPI = createApi({
     reducerPath: 'userAPI',
     baseQuery: fetchBaseQuery({
         baseUrl: '/api',
@@ -13,7 +13,7 @@ export const userAPI = createApi({
                 url: '/Employee',
             })
         }),
-        fetchEmployee: build.query<IFetchedEmployee, string>({
+        fetchEmployee: build.query<IFetchedEmployee[], string>({
             query: (id) => ({
                 url: `/Employee/${id}`
             })
@@ -48,4 +48,4 @@ export const {
     useDeleteEmployeeMutation,
     useFetchAllEmployeesQuery,
     useFetchEmployeeQuery
-} = userAPI
+} = EmployeeAPI
