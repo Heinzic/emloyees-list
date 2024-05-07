@@ -13,12 +13,12 @@ class EmployeeGetAllView(GenericAPIView):
         output = [
             {
                 'id': output.id,
-                'Name': output.name, 
-                'Email': output.email, 
-                'Birth date': output.birth_date, 
-                'Position': output.position,
-                'Gender': output.gender,
-                'Technology': output.technology,
+                'name': output.name, 
+                'email': output.email, 
+                'birth_date': output.birth_date, 
+                'position': output.position,
+                'gender': output.gender,
+                'technology': output.technology,
             } for output in Employee.objects.all()
         ]
         
@@ -38,12 +38,12 @@ class EmployeeGetView(GenericAPIView):
         output = [
             {
                 'id': output.id,
-                'Name': output.name, 
-                'Email': output.email, 
-                'Birth date': output.birth_date, 
-                'Position': output.position,
-                'Gender': output.gender,
-                'Technology': output.technology,
+                'name': output.name, 
+                'email': output.email, 
+                'birth_date': output.birth_date, 
+                'position': output.position,
+                'gender': output.gender,
+                'technology': output.technology,
             } for output in Employee.objects.filter(id = id)
         ]
         

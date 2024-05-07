@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Header from "../base/Header";
-import { userAPI } from "../../store/services/UserAPI";
+import { useFetchAllEmployeesQuery, userAPI } from "../../store/services/UserAPI";
+import Table from "../elements/Table";
+import { IFetchedEmployee } from "../../store/models/IUser";
+import { NavLink } from "react-router-dom";
 
 function EmployeesList() {
     
@@ -54,18 +57,15 @@ function EmployeesList() {
         }
     }
 
-    const [deleteUser, {}] = userAPI.useDeleteEmployeeMutation()
-
-    const handleCreate = () => {
-        deleteUser('3b9718e2-6f79-4b1c-8399-506d867d8df0')
-    }
+    const {data} = useFetchAllEmployeesQuery()
+    
 
     return(
         <>
             <Header/>
             <div className="max-w-[1560px] mx-auto">
                  <div className="flex text-[18px] h-[77px] items-center gap-[16px]">
-                    <a>Главная</a>
+                    <NavLink to={'/test'}>Главная</NavLink>
                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.6259 2.45964C5.01643 2.06912 5.64959 2.06912 6.04011 2.45964L11.3734 7.79297C11.764 8.1835 11.764 8.81666 11.3734 9.20719L6.04011 14.5405C5.64959 14.931 5.01643 14.931 4.6259 14.5405C4.23538 14.15 4.23538 13.5168 4.6259 13.1263L9.25213 8.50008L4.6259 3.87385C4.23538 3.48333 4.23538 2.85017 4.6259 2.45964Z" fill="#B0B0B0"/>
                     </svg>
@@ -158,9 +158,10 @@ function EmployeesList() {
                         </ul>
                     </div>
                     <div className="">
-                        <button className="text-white bg-[#155DA4] px-[48px] py-[12px] rounded-lg" onClick={handleCreate}>Найти</button>
+                        <button className="text-white bg-[#155DA4] px-[48px] py-[12px] rounded-lg">Найти</button>
                     </div>
                 </div>
+                <Table />
             </div>
         </>
     )

@@ -41,3 +41,11 @@ export const userAPI = createApi({
         }),
     })
 })
+
+export const {
+    useChangeEmployeeMutation,
+    useCreateEmployeeMutation,
+    useDeleteEmployeeMutation,
+    useFetchAllEmployeesQuery,
+    useFetchEmployeeQuery
+} = userAPI
